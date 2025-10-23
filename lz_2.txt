@@ -1,0 +1,134 @@
+--Создаем табл Students
+Create table Students
+(id int not  null IDENTITY(1,1),
+surname nvarchar(25) not null,
+first_name nvarchar(25) not null,
+second_name nvarchar(25),
+form nvarchar(10) not null default 'очная',
+faculty nvarchar(10) not null default 'ФПМ',
+cours int  not null default 1,
+all_hours int default NULL,
+inclass_hours int default NULL,
+birthday_date date,
+in_date date,   
+exm float default NULL,
+CONSTRAINT PK_Students Primary key (id)
+);
+
+-- Заполняем
+insert into Students values
+(N'Стрынгель',N'К',null,N'заочная',N'ФПК',1,300,100,'19831212','20160901',8),
+(N'Козлова',N'Д',N'Е',N'заочная',N'ФПК',2,300,100,'19831012','20150901',8.4),
+(N'Федоров',N'Н',N'Н',N'заочная',N'ФПК',3,300,100,'19811207','20140901',7),
+(N'Рингель',N'П',N'О',N'заочная',N'ФПК',3,300,100,'19730215','20160901',8),
+(N'Бежик',N'Н',N'Н',N'вечерняя',N'ФПК',1,500,400,'19931211','2016-09-01',4.5),
+(N'Осипчик',N'Н',N'Н',N'вечерняя',N'ФПК',1,500,400,'19831216','20150901',7.7),
+(N'Белый',N'С',N'С',N'вечерняя',N'ФПК',2,450,370,'19870627','20150901',6.7),
+(N'Ботяновский',N'А',N'С',N'вечерняя',N'ФПК',2,450,370,'19870723','20150901',7.6),
+(N'Слободницкий',N'С',N'А',N'вечерняя',N'ФПК',2,450,370,'19870803','20150901',6.7),
+(N'Рогатка',N'П',N'Р',N'очная',N'ФПМ',1,500,450,'19861027','20160901',7.4),
+(N'Федоренко',N'П',N'Р',N'очная',N'ФПМ',1,500,450,'19950426','20160901',5.6),
+(N'Зингель',N'П',N'В',N'очная',N'ФПМ',2,500,450,'19900425','20150901',3.4),
+(N'Михеенок',N'Л',N'Н',N'очная',N'ФПМ',2,500,450,'19890313','20150901',5.3),
+(N'Савицкая',N'Л',N'Н',N'очная',N'ФПМ',3,450,400, '19950705','20140901',7.7),
+(N'Ковальчук',N'О',N'Е',N'заочная',N'ФПМ',1,350,100,'19640523','20160901',7.6),
+(N'Заболотная',N'Л',N'И',N'заочная',N'ФПМ',1,350,100,'19860914','20160901',4.7),
+(N'Ковриго',N'И',null,N'заочная',N'ФПМ',2,360,120,'19920301', '20150901',7.7),
+(N'Шарапо',N'М',null,N'заочная',N'ФПМ',2,360,120,'19970325', '20150901',8.7),
+(N'Сафроненко',N'Н',N'Л',N'заочная',N'ФПМ',3,370,130, '19920525','20140901',7.7),
+(N'Зайцева',N'Т',N'Я',N'заочная',N'ФПМ',3,370,130,'19940725','20140901',5.6);
+
+--Создаем табл Teachers
+Create table Teachers
+(id int not  null IDENTITY(1,1),
+surname nvarchar(25) not null,
+first_name nvarchar(25) not null,
+second_name nvarchar(25),
+subject nvarchar(150),
+form nvarchar(10) not null default 'очная',
+faculty nvarchar(10) not null default 'ФПМ',
+cours int default 1 not NULL,
+hours int default NULL,
+birthday_date date,
+start_work_date date,
+CONSTRAINT PK_Teachers Primary key (id)
+);
+ --Заполняем
+insert into Teachers values
+(N'Скворцов',N'К',null,N'Дифференциальные исчисления',N'очная',N'ФПМ',1,150,'19831212','20160901'),
+(N'Скворцов',N'К',null,N'Геометрия и алгебра',N'очная',N'ФПМ',1,200,'19831212','20160901'),
+(N'Сидоренко',N'Л',N'К',N'Теория вероятности',N'очная',N'ФПМ',1,100,'19831212','20160901'),
+(N'Скворцов',N'К',null,N'Дифференциальные исчисления',N'заочная',N'ФПМ',1,34,'19831212','20160901'),
+(N'Сидоренко',N'Л',N'К',N'Геометрия и алгебра',N'заочная',N'ФПМ',1,50,'19831212','20160901'),
+(N'Сидоренко',N'Л',N'К',N'Теория вероятности',N'заочная',N'ФПМ',1,16,'19831212','20160901'),
+(N'Круглов',N'К',N'Д',N'Теория множеств',N'очная',N'ФПМ',2,150,'19860825','20140901'),
+(N'Круглов',N'К',N'Д',N'Методы численного анализа',N'очная',N'ФПМ',2,150,'19860825','20140901'),
+(N'Загорова',N'К',N'Д',N'Прикладная статистика',N'очная',N'ФПМ',2,150,'19791005','20100901'),
+(N'Круглов',N'К',N'Д',N'Теория множеств',N'заочная',N'ФПМ',2,40,'19860825','20140901'),
+(N'Круглов',N'К',N'Д',N'Методы численного анализа',N'заочная',N'ФПМ',2,40,'19860825','20140901'),
+(N'Загорова',N'К',N'Д',N'Прикладная статистика',N'заочная',N'ФПМ',2,40,'19791005','20100901'),
+(N'Зуров',N'П',null,N'Философия',N'очная',N'ФПМ',3,50,'19780712','20160901'),
+(N'Зуров',N'П',null,N'Социология',N'очная',N'ФПМ',3,50,'19780712','20160901'),
+(N'Сидоренко',N'Л',N'К',N'Методы машинного обучения',N'очная',N'ФПМ',3,150,'19831212','20160901')
+
+
+-- № 1
+SELECT surname FROM Students 
+where surname like N'%б%' or surname like N'%о%'
+
+-- № 2
+select * from Students
+where surname like N'К%' and second_name is null
+
+-- № 3
+select * from Students
+where len(surname) >= 8
+
+-- № 4
+select * from Students
+where len(surname) ! = 7 and surname like N'%а%'
+
+-- № 5
+select surname, first_name, second_name, faculty, cours, form  from Students
+where faculty like N'ФПМ' and cours in (1,2) order by second_name ASC
+
+-- № 6 
+select surname, first_name, second_name, faculty, form, exm from Students
+where faculty like N'ФПК' and form like N'заочная' and exm > 6 order by exm desc
+
+-- № 7 
+select DISTINCT surname, first_name, second_name, faculty, form from Teachers
+where faculty like N'ФПМ' order by form,surname asc
+
+-- № 8 
+select DISTINCT surname, first_name, second_name, faculty, cours, subject, hours from Teachers
+where faculty like N'ФПМ' and cours = 1 and hours >100
+
+-- № 9 
+select DISTINCT surname, first_name, second_name, start_work_date, DATEDIFF (YEAR, start_work_date, GETDATE()) as experience from Teachers
+where DATEDIFF (YEAR, start_work_date, GETDATE())>3 AND second_name is null 
+
+
+-- № 10
+select subject, surname, first_name, second_name, form, faculty, cours, hours from Teachers 
+where faculty like N'ФПМ' and cours = 3
+
+-- № 11 
+select subject, faculty, hours, cours, form, surname, first_name, second_name from Teachers
+where faculty like N'ФПМ'and hours >100
+
+-- № 12
+select subject, faculty, cours, form, surname, first_name, second_name from Teachers
+where second_name is null
+
+-- № 13
+select DISTINCT surname, first_name, second_name, DATEDIFF (YEAR, birthday_date, GETDATE()) as age from  Teachers
+where DATEDIFF (YEAR, birthday_date, GETDATE()) >30
+
+-- № 14 
+select DISTINCT surname, first_name, second_name,DATEDIFF (YEAR, birthday_date, GETDATE()) as age from  Teachers
+where DATEDIFF (YEAR, birthday_date, GETDATE()) between 35 and 40 order by surname asc
+
+-- № 15 
+select DISTINCT surname, first_name, second_name, birthday_date from  Teachers
+where MONTH (birthday_date)= 10 order by birthday_date asc
