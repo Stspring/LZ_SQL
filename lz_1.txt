@@ -1,0 +1,87 @@
+-- Создаем табл Students
+create table students(
+  id int not null Identity(1,1) primary key,
+  name nvarchar(20) not null,
+  surname nvarchar(20) not null,
+  second_name nvarchar(20),
+  birthday nvarchar(20) not null,
+  numb_group int not null
+)
+-- Заполняем 
+insert students values
+(N'П',N'Федоренко',N'Р','25.12.1997',1),
+(N'О',N'Зингел ',N'','25.12.1985',1),
+(N'Н',N'Савицкая',N'','22.09.1987',2),
+(N'М',N'Ковальчук',N'Е','17.06.1992',2),
+(N'Т',N'Ковриго',N'Р','13.05.1992',3),
+(N'Н',N'Шарапо',N'','14.08.1992',3)
+
+-- Создаем табл Group
+create table groups(
+  id int not null identity(1,1) primary key,
+  name_group nvarchar(20) not null,
+  cours int not null
+)
+
+-- Заполняем 
+insert groups values (N'ПО-135',1),(N'ПО-235',2),(N'ПО-335',3)
+
+-- Связываем Students  с Group
+alter table students add CONSTRAINT fk_to_students FOREIGN key (numb_group) references groups(id)
+
+-- Создаем табл Subject
+create table subjects(
+	id int not null identity(1,1) primary key,
+   	name_sub nvarchar(50) not null,
+  	hours int not null
+)
+
+-- Заполняем 
+insert subjects values 
+(N'Физика',200),
+(N'Математика',120),
+(N'Основы алгоритмизации',70),
+(N'Проектирование БД',130),
+(N'Средства визуального программирования ',90),
+(N'Объектно-ориентированное программирование',70)
+
+-- Создаем табл Plans
+create table plans(
+	id int not null Identity(1,1) primary key,
+  	name_gr int not null,
+  	name_sb int not null
+)
+
+-- Заполняем 
+insert plans values (1,1),(2,2),(3,3),(1,4),(2,5),(3,6)
+
+-- Создаем связь Plans, Groups и Subjects
+alter table plans add CONSTRAINT fk_to_plans FOREIGN key (name_gr) references groups(id)
+alter table plans add CONSTRAINT fk_to_plans_2 FOREIGN key (name_sb) references subjects(id)
+ 
+-- Задание 3 
+-- 1.1
+select students.id, name,surname,second_name,birthday,groups.name_group,groups.cours from students
+    join groups on groups.id = students.numb_group
+
+-- 1.2
+select plans.id, name_sub,cours,hours from plans
+ 	join groups on groups.id = plans.name_gr
+    join subjects on subjects.id = plans.name_sb
+
+-- Задание 4
+update groups Set name_group = N'ПО-134' where id = 1
+
+-- Задание 5
+delete from groups where name_group = 'ПО-135'
+
+-- Задание 6
+update subjects set hours = hours + 30 where id in (5,6)
+
+-- Задание 7
+alter TABLE subjects add status nvarchar(25)
+UPDATE subjects set status = N'ЗАЧЕТ' where id in (3)
+UPDATE subjects set status = N'ЭКЗАМЕН' where id in (1,2,4,5,6)
+
+-- Задание 8 
+alter TABLE students drop column second_name
